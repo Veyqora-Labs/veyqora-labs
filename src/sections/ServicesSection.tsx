@@ -6,44 +6,53 @@ import { ServiceItem } from '../types';
 const servicesData: ServiceItem[] = [
   {
     id: 'ai-automation',
-    subtitle: 'WORKFLOW & PROCESS ENGINE',
+    subtitle: 'WORKFLOW & AGENT ENGINE',
     title: 'AI Automation',
-    description: 'Automate repetitive workflows and business processes using intelligent AI systems designed for maximum efficiency.',
+    description: 'Automate repetitive workflows, connect your tools, and use AI to make everyday business operations faster and more efficient.',
     iconName: 'Bot',
-    features: [
-      'Document parsing & data extraction pipelines',
-      'Automated customer & internal triage systems',
-      'Custom LLM agent workflow orchestration',
-      'API integrations with existing business stack'
+    examples: [
+      'Workflow automation',
+      'AI agents',
+      'Document processing',
+      'Data extraction',
+      'Business process automation',
+      'API integrations'
     ],
+    ctaText: 'Automate Your Workflow',
     gradient: 'from-[#0066FF]/20 to-[#7B3FF2]/20',
   },
   {
     id: 'custom-software',
-    subtitle: 'TAILORED ENTERPRISE APPLICATION',
-    title: 'Custom AI Software',
-    description: 'Build tailored AI-powered applications engineered specifically around your exact operational & business requirements.',
+    subtitle: 'PURPOSE-BUILT BUSINESS SYSTEMS',
+    title: 'Custom Software',
+    description: 'Purpose-built software designed around your business processes, customers, and operational needs.',
     iconName: 'Cpu',
-    features: [
-      'Bespoke AI-powered SaaS & Web Applications',
-      'Vector database & RAG knowledge bases',
-      'Scalable cloud infrastructure & API layers',
-      'Enterprise security & data compliance'
+    examples: [
+      'Internal business tools',
+      'Web applications',
+      'AI-powered dashboards',
+      'SaaS platforms',
+      'API integrations',
+      'Business systems'
     ],
+    ctaText: 'Build Custom Software',
     gradient: 'from-[#7B3FF2]/20 to-[#0066FF]/20',
   },
   {
     id: 'ai-mvp',
-    subtitle: 'CONCEPT TO PRODUCTION MVP',
+    subtitle: 'RAPID PRODUCT DEVELOPMENT',
     title: 'AI MVP Development',
-    description: 'Turn ambitious product ideas into functional, production-ready MVPs from initial concept through deployment.',
+    description: 'Turn your product idea into a functional MVP using modern software and AI technologies.',
     iconName: 'Rocket',
-    features: [
-      'Rapid prototype-to-production roadmap',
-      'Modern React, TypeScript & Node architecture',
-      'AI model selection & latency optimization',
-      'Investor & early adopter ready build'
+    examples: [
+      'Product prototypes',
+      'AI SaaS MVPs',
+      'AI assistants',
+      'Web applications',
+      'Proof-of-concepts',
+      'Rapid product development'
     ],
+    ctaText: 'Build Your MVP',
     gradient: 'from-[#0066FF]/20 to-[#5C66FF]/20',
   },
 ];
@@ -61,9 +70,9 @@ export const ServicesSection: React.FC = () => {
     <section id="services" className="py-24 md:py-32 relative z-10 bg-[#080B14]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          badge="OUR CORE CAPABILITIES"
+          badge="OUR CORE SERVICES"
           title="What We Build"
-          description="Practical software solutions designed around real business problems, built with software engineering rigor."
+          description="Engineered software solutions designed around real business problems and operational requirements."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

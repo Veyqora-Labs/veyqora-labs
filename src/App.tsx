@@ -2,8 +2,10 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './sections/HeroSection';
 import { CapabilityStrip } from './sections/CapabilityStrip';
 import { ServicesSection } from './sections/ServicesSection';
-import { WorkSection } from './sections/WorkSection';
+import { ProblemSolutionSection } from './sections/ProblemSolutionSection';
 import { ProcessSection } from './sections/ProcessSection';
+import { WhoWeHelpSection } from './sections/WhoWeHelpSection';
+import { WorkSection } from './sections/WorkSection';
 import { AboutSection } from './sections/AboutSection';
 import { WhyVeyqoraSection } from './sections/WhyVeyqoraSection';
 import { CTASection } from './sections/CTASection';
@@ -16,13 +18,15 @@ export function App() {
       {/* Sticky Header Navigation */}
       <Navbar />
 
-      {/* Main Content Flow */}
+      {/* Main Narrative Flow */}
       <main>
         <HeroSection />
         <CapabilityStrip />
         <ServicesSection />
-        <WorkSection />
+        <ProblemSolutionSection />
         <ProcessSection />
+        <WhoWeHelpSection />
+        <WorkSection />
         <AboutSection />
         <WhyVeyqoraSection />
         <CTASection />

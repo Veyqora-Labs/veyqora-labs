@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Mail } from 'lucide-react';
 import { Button } from '../components/Button';
 
 export const CTASection: React.FC = () => {
@@ -29,19 +29,18 @@ export const CTASection: React.FC = () => {
 
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-[#0066FF] uppercase">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>READY TO TALK IMPLEMENTATION?</span>
+              <span>GET STARTED WITH VEYQORA</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
-              Have a problem worth solving?
+              Have a Business Problem or Product Idea?
             </h2>
 
             <p className="text-base sm:text-lg text-[#A7AFBE] leading-relaxed max-w-xl mx-auto">
-              Tell us what you're trying to build or automate. We will help you scope, design, and engineer the right software solution.
+              Let's explore how AI, automation, or custom software can turn it into a practical solution.
             </p>
 
-            <div className="pt-4 flex justify-center">
+            <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
               <Button
                 size="lg"
                 variant="primary"
@@ -50,6 +49,14 @@ export const CTASection: React.FC = () => {
               >
                 Start a Project
               </Button>
+
+              <a
+                href="mailto:veyqora.labs@gmail.com"
+                className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-white px-6 py-3.5 rounded-lg bg-white/[0.06] hover:bg-white/10 border border-white/10 transition-all duration-200"
+              >
+                <Mail className="w-4 h-4 text-[#0066FF]" />
+                <span>Email Veyqora</span>
+              </a>
             </div>
           </div>
         </motion.div>

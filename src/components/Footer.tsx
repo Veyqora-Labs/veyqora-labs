@@ -1,11 +1,15 @@
 import React from 'react';
-import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail, ArrowUpRight } from 'lucide-react';
 import logoImg from '../assets/veyqora-logo.png';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   const handleNavClick = (href: string) => {
+    if (href === '#top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     const target = document.querySelector(href);
     if (target) {
       const topOffset = target.getBoundingClientRect().top + window.pageYOffset - 80;
@@ -38,11 +42,12 @@ export const Footer: React.FC = () => {
               </span>
             </div>
 
-            <p className="text-sm text-[#A7AFBE] max-w-sm leading-relaxed">
+            <p className="text-sm font-semibold text-white">
               Intelligent Software. Built for Business.
             </p>
-            <p className="text-xs text-[#A7AFBE]/70 max-w-sm">
-              We build AI-powered products, automation systems, custom software, and AI MVPs for startups and businesses.
+            
+            <p className="text-xs text-[#A7AFBE] max-w-sm leading-relaxed">
+              AI-powered automation, custom software, and MVP development for modern businesses.
             </p>
 
             {/* Operational Status Pill */}
@@ -62,7 +67,6 @@ export const Footer: React.FC = () => {
                 { name: 'Services', href: '#services' },
                 { name: 'Work', href: '#work' },
                 { name: 'Process', href: '#process' },
-                { name: 'Why Us', href: '#why-us' },
                 { name: 'About', href: '#about' },
                 { name: 'Contact', href: '#contact' },
               ].map((item) => (
@@ -79,10 +83,10 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Contact & Social Links */}
+          {/* Official Social Links & Direct Email */}
           <div className="md:col-span-4 space-y-4">
             <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-white">
-              Connect With Us
+              Official Channels
             </h4>
 
             <div className="space-y-2.5 text-sm">
@@ -96,13 +100,24 @@ export const Footer: React.FC = () => {
               </a>
 
               <a
-                href="https://www.linkedin.com/company/veyqora-labs/"
+                href="https://www.linkedin.com/company/veyqora-labs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 text-[#A7AFBE] hover:text-white transition-colors group"
               >
                 <Linkedin className="w-4 h-4 text-[#0066FF]" />
                 <span>LinkedIn / veyqora-labs</span>
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+
+              <a
+                href="https://www.instagram.com/veyqora.labs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 text-[#A7AFBE] hover:text-white transition-colors group"
+              >
+                <Instagram className="w-4 h-4 text-[#0066FF]" />
+                <span>Instagram / veyqora.labs</span>
                 <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
 

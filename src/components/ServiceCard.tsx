@@ -7,7 +7,7 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 interface ServiceCardProps {
   service: ServiceItem;
   index: number;
-  onSelect?: (id: string) => void;
+  onSelect?: (serviceId: string) => void;
 }
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, onSelect }) => {
@@ -24,11 +24,11 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, onSele
       onClick={() => onSelect?.(service.id)}
       className="group relative flex flex-col justify-between p-6 sm:p-8 rounded-2xl bg-[#0D111F] border border-white/[0.08] hover:border-[#0066FF]/40 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-[#0066FF]/10 overflow-hidden cursor-pointer"
     >
-      {/* Subtle radial ambient glow on hover */}
+      {/* Ambient hover glow */}
       <div className="absolute -right-16 -top-16 w-48 h-48 bg-gradient-to-br from-[#0066FF]/10 to-[#7B3FF2]/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       <div>
-        {/* Header with Icon and Top Right Arrow */}
+        {/* Header with Icon and Arrow */}
         <div className="flex items-center justify-between mb-6">
           <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-white group-hover:border-[#0066FF]/30 group-hover:bg-[#0066FF]/10 group-hover:text-[#0066FF] transition-all duration-300">
             <IconComponent className="w-6 h-6" />
@@ -39,7 +39,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, onSele
           </div>
         </div>
 
-        {/* Title & Subtitle */}
+        {/* Subtitle & Title */}
         <span className="text-xs font-mono font-medium text-[#0066FF] uppercase tracking-wider block mb-1">
           {service.subtitle}
         </span>
@@ -47,24 +47,25 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, onSele
           {service.title}
         </h3>
 
+        {/* Description */}
         <p className="text-sm text-[#A7AFBE] leading-relaxed mb-6">
           {service.description}
         </p>
 
-        {/* Feature List */}
+        {/* Capabilities / Examples */}
         <div className="pt-4 border-t border-white/[0.08] space-y-2.5">
-          {service.features.map((feature, fIdx) => (
-            <div key={fIdx} className="flex items-center gap-2.5 text-xs text-[#A7AFBE] group-hover:text-gray-300 transition-colors">
+          {service.examples.map((example, eIdx) => (
+            <div key={eIdx} className="flex items-center gap-2.5 text-xs text-[#A7AFBE] group-hover:text-gray-300 transition-colors">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#0066FF] shrink-0" />
-              <span>{feature}</span>
+              <span>{example}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Card Footer Indicator */}
-      <div className="mt-8 pt-4 border-t border-white/[0.04] flex items-center justify-between text-xs font-medium text-[#A7AFBE] group-hover:text-white transition-colors">
-        <span>Explore Capability</span>
+      {/* Action CTA Button */}
+      <div className="mt-8 pt-4 border-t border-white/[0.04] flex items-center justify-between text-xs font-semibold text-white group-hover:text-[#0066FF] transition-colors">
+        <span>{service.ctaText} →</span>
         <span className="text-[10px] font-mono text-white/40">0{index + 1}</span>
       </div>
     </motion.div>

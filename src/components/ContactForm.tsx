@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle2, AlertCircle, Loader2, RefreshCw } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Loader2, RefreshCw, Mail } from 'lucide-react';
 import { InquiryFormData, InquiryFormErrors } from '../types';
 import { Button } from './Button';
 
@@ -10,7 +10,6 @@ export const ContactForm: React.FC = () => {
     email: '',
     company: '',
     projectType: 'AI Automation',
-    budgetRange: '$10k - $25k',
     message: '',
   });
 
@@ -32,7 +31,7 @@ export const ContactForm: React.FC = () => {
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = 'Please describe your project or operational problem';
+      newErrors.message = 'Please describe your business problem or project idea';
     } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Message must be at least 10 characters';
     }
@@ -46,11 +45,10 @@ export const ContactForm: React.FC = () => {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Simulate real frontend submission delay
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 1200);
+    }, 1000);
   };
 
   const handleReset = () => {
@@ -59,7 +57,6 @@ export const ContactForm: React.FC = () => {
       email: '',
       company: '',
       projectType: 'AI Automation',
-      budgetRange: '$10k - $25k',
       message: '',
     });
     setErrors({});
@@ -68,7 +65,6 @@ export const ContactForm: React.FC = () => {
 
   return (
     <div className="w-full max-w-2xl mx-auto p-6 sm:p-10 rounded-2xl bg-[#0D111F] border border-white/[0.08] shadow-2xl relative overflow-hidden">
-      {/* Background glow accent */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#0066FF]/10 rounded-full blur-3xl pointer-events-none" />
 
       <AnimatePresence mode="wait">
@@ -85,36 +81,44 @@ export const ContactForm: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-2xl font-bold text-white">Inquiry Received</h3>
+              <h3 className="text-2xl font-bold text-white">Project Request Sent</h3>
               <p className="text-sm text-[#A7AFBE] max-w-md mx-auto leading-relaxed">
                 Thank you for reaching out to Veyqora Labs. We will review your project details and get back to you within 24 hours.
               </p>
             </div>
 
             <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.06] max-w-md mx-auto text-left font-mono text-xs text-[#A7AFBE] space-y-1">
-              <div className="text-white font-semibold mb-2 border-b border-white/[0.06] pb-1">Submission Telemetry</div>
+              <div className="text-white font-semibold mb-2 border-b border-white/[0.06] pb-1">Submission Details</div>
               <div><span className="text-white/40">Name:</span> {formData.name}</div>
-              <div><span className="text-white/40">Type:</span> {formData.projectType}</div>
-              <div><span className="text-white/40">Budget:</span> {formData.budgetRange}</div>
+              <div><span className="text-white/40">Need:</span> {formData.projectType}</div>
               <div><span className="text-white/40">Email:</span> {formData.email}</div>
             </div>
 
-            <Button
-              variant="outline"
-              size="sm"
-              icon={<RefreshCw className="w-3.5 h-3.5" />}
-              onClick={handleReset}
-            >
-              Submit Another Project Inquiry
-            </Button>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                icon={<RefreshCw className="w-3.5 h-3.5" />}
+                onClick={handleReset}
+              >
+                Send Another Request
+              </Button>
+              <a
+                href="mailto:veyqora.labs@gmail.com"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#0066FF]/20 text-xs font-semibold text-white border border-[#0066FF]/40 hover:bg-[#0066FF]/30 transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                <span>Direct Email Fallback</span>
+              </a>
+            </div>
           </motion.div>
         ) : (
           <form key="form" onSubmit={handleSubmit} noValidate className="space-y-6 relative z-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Full Name */}
+              {/* Name */}
               <div className="space-y-2">
                 <label htmlFor="name" className="block text-xs font-mono font-medium text-white">
-                  FULL NAME <span className="text-red-400">*</span>
+                  YOUR NAME <span className="text-red-400">*</span>
                 </label>
                 <input
                   id="name"
@@ -138,7 +142,7 @@ export const ContactForm: React.FC = () => {
                 )}
               </div>
 
-              {/* Email Address */}
+              {/* Email */}
               <div className="space-y-2">
                 <label htmlFor="email" className="block text-xs font-mono font-medium text-white">
                   EMAIL ADDRESS <span className="text-red-400">*</span>
@@ -167,7 +171,7 @@ export const ContactForm: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Company (Optional) */}
+              {/* Company */}
               <div className="space-y-2">
                 <label htmlFor="company" className="block text-xs font-mono font-medium text-white">
                   COMPANY / ORGANISATION <span className="text-[#A7AFBE] text-[10px]">(OPTIONAL)</span>
@@ -182,10 +186,10 @@ export const ContactForm: React.FC = () => {
                 />
               </div>
 
-              {/* Project Type */}
+              {/* What do you need? */}
               <div className="space-y-2">
                 <label htmlFor="projectType" className="block text-xs font-mono font-medium text-white">
-                  PROJECT TYPE
+                  WHAT DO YOU NEED? <span className="text-red-400">*</span>
                 </label>
                 <select
                   id="projectType"
@@ -194,35 +198,17 @@ export const ContactForm: React.FC = () => {
                   className="w-full px-4 py-3 rounded-xl bg-[#080B14] border border-white/10 hover:border-white/20 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#0066FF] transition-all cursor-pointer"
                 >
                   <option value="AI Automation">AI Automation</option>
-                  <option value="Custom AI Software">Custom AI Software</option>
-                  <option value="AI MVP Development">AI MVP Development</option>
-                  <option value="Technical Partnership">Technical Partnership / Other</option>
+                  <option value="Custom Software">Custom Software</option>
+                  <option value="AI MVP">AI MVP</option>
+                  <option value="Not Sure Yet">Not Sure Yet</option>
                 </select>
               </div>
-            </div>
-
-            {/* Budget Range */}
-            <div className="space-y-2">
-              <label htmlFor="budgetRange" className="block text-xs font-mono font-medium text-white">
-                PROJECT BUDGET RANGE
-              </label>
-              <select
-                id="budgetRange"
-                value={formData.budgetRange}
-                onChange={(e) => setFormData({ ...formData, budgetRange: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl bg-[#080B14] border border-white/10 hover:border-white/20 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#0066FF] transition-all cursor-pointer"
-              >
-                <option value="< $10k">&lt; $10,000</option>
-                <option value="$10k - $25k">$10,000 - $25,000</option>
-                <option value="$25k - $50k">$25,000 - $50,000</option>
-                <option value="$50k+">$50,000+</option>
-              </select>
             </div>
 
             {/* Message */}
             <div className="space-y-2">
               <label htmlFor="message" className="block text-xs font-mono font-medium text-white">
-                PROJECT OVERVIEW / PROBLEM <span className="text-red-400">*</span>
+                PROJECT OVERVIEW / MESSAGE <span className="text-red-400">*</span>
               </label>
               <textarea
                 id="message"
@@ -246,7 +232,7 @@ export const ContactForm: React.FC = () => {
               )}
             </div>
 
-            {/* Submit Button */}
+            {/* Submit Button: Send Project Request */}
             <Button
               type="submit"
               size="lg"
@@ -261,7 +247,7 @@ export const ContactForm: React.FC = () => {
                 )
               }
             >
-              {isSubmitting ? 'Processing Inquiry...' : 'Send Project Inquiry'}
+              {isSubmitting ? 'Processing...' : 'Send Project Request'}
             </Button>
           </form>
         )}

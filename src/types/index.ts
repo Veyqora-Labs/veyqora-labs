@@ -4,7 +4,8 @@ export interface ServiceItem {
   subtitle: string;
   description: string;
   iconName: string;
-  features: string[];
+  examples: string[];
+  ctaText: string;
   gradient: string;
 }
 
@@ -13,10 +14,12 @@ export interface ProjectItem {
   title: string;
   category: string;
   description: string;
+  problem: string;
+  solution: string;
   fullDescription: string;
   metrics: string[];
   techStack: string[];
-  badge: string;
+  badge: 'Veyqora Project' | 'Prototype' | 'STUDIO PROJECT';
   previewType: 'document' | 'ranking' | 'academic';
 }
 
@@ -32,7 +35,6 @@ export interface InquiryFormData {
   email: string;
   company?: string;
   projectType: string;
-  budgetRange: string;
   message: string;
 }
 
@@ -40,6 +42,5 @@ export interface InquiryFormErrors {
   name?: string;
   email?: string;
   projectType?: string;
-  budgetRange?: string;
   message?: string;
 }

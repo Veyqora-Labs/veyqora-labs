@@ -1,63 +1,52 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ProcessStep } from '../types';
-import { CheckCircle2, Search, Layout, Code2, Rocket, RefreshCw } from 'lucide-react';
+import { CheckCircle2, Search, Layout, Code2, Rocket } from 'lucide-react';
 
 const steps: (ProcessStep & { icon: React.ElementType })[] = [
   {
     number: '01',
-    title: 'Discover',
-    description: 'Understand the business problem, users and desired outcome.',
+    title: 'DISCOVER',
+    description: 'Understand the business, problem, workflow, or product idea.',
     details: [
-      'Operational workflow mapping & bottleneck identification',
-      'Target architecture & AI feasibility study',
-      'Clear definition of success metrics & scope'
+      'Operational workflow & bottleneck discovery',
+      'Technical feasibility & AI integration assessment',
+      'Definition of core business objectives & scope'
     ],
     icon: Search,
   },
   {
     number: '02',
-    title: 'Design',
-    description: 'Define the product experience, architecture and technical approach.',
+    title: 'DESIGN',
+    description: 'Plan the solution, user experience, architecture, and AI components.',
     details: [
-      'UI/UX design system & interactive prototypes',
-      'System architecture & data model specification',
-      'Model selection & AI integration pipeline design'
+      'UI/UX design system & interactive workflow maps',
+      'System architecture & data model specs',
+      'Model selection & prompt/RAG pipeline design'
     ],
     icon: Layout,
   },
   {
     number: '03',
-    title: 'Build',
-    description: 'Develop the software, integrate AI and test the core workflows.',
+    title: 'BUILD',
+    description: 'Develop, integrate, test, and refine the solution.',
     details: [
-      'Production-grade full-stack development',
-      'Custom AI prompt engineering & fine-tuning',
+      'Full-stack development using React & Node/Python',
+      'Custom AI integration & model fine-tuning',
       'Automated testing & edge case verification'
     ],
     icon: Code2,
   },
   {
     number: '04',
-    title: 'Deploy',
-    description: 'Launch the product and make it production-ready.',
+    title: 'LAUNCH',
+    description: 'Deploy the product and provide the foundation for future improvements.',
     details: [
-      'Cloud infrastructure setup (Vercel, AWS, GCP)',
-      'CI/CD pipeline configuration',
-      'Performance optimization & security hardening'
+      'Production deployment & cloud infrastructure',
+      'CI/CD pipeline & security configuration',
+      'Ongoing technical support & continuous optimization'
     ],
     icon: Rocket,
-  },
-  {
-    number: '05',
-    title: 'Improve',
-    description: 'Monitor, refine and continuously improve the solution.',
-    details: [
-      'Telemetry tracking & AI response evaluation',
-      'Iterative feature enhancements',
-      'Ongoing technical maintenance & support'
-    ],
-    icon: RefreshCw,
   },
 ];
 
@@ -66,9 +55,8 @@ export const ProcessTimeline: React.FC = () => {
 
   return (
     <div className="w-full">
-      {/* Desktop Horizontal Step Track */}
-      <div className="hidden lg:grid grid-cols-5 gap-4 relative mb-12">
-        {/* Connecting Background Line */}
+      {/* Desktop 4-Column Track */}
+      <div className="hidden lg:grid grid-cols-4 gap-6 relative mb-12">
         <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white/[0.08] -translate-y-1/2 z-0" />
         
         {steps.map((step, idx) => {
@@ -83,7 +71,7 @@ export const ProcessTimeline: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
               onClick={() => setSelectedStep(idx)}
-              className={`relative z-10 p-5 rounded-2xl border text-left transition-all duration-300 cursor-pointer ${
+              className={`relative z-10 p-6 rounded-2xl border text-left transition-all duration-300 cursor-pointer ${
                 isSelected
                   ? 'bg-[#0D111F] border-[#0066FF] shadow-lg shadow-[#0066FF]/20 ring-1 ring-[#0066FF]'
                   : 'bg-[#080B14] border-white/[0.08] hover:border-white/20 hover:bg-[#0D111F]/60'
@@ -93,7 +81,7 @@ export const ProcessTimeline: React.FC = () => {
                 <span className={`text-xs font-mono font-semibold ${isSelected ? 'text-[#0066FF]' : 'text-[#A7AFBE]'}`}>
                   STEP {step.number}
                 </span>
-                <div className={`p-2 rounded-xl ${isSelected ? 'bg-[#0066FF]/20 text-[#0066FF]' : 'bg-white/[0.04] text-[#A7AFBE]'}`}>
+                <div className={`p-2.5 rounded-xl ${isSelected ? 'bg-[#0066FF]/20 text-[#0066FF]' : 'bg-white/[0.04] text-[#A7AFBE]'}`}>
                   <StepIcon className="w-4 h-4" />
                 </div>
               </div>
@@ -112,7 +100,7 @@ export const ProcessTimeline: React.FC = () => {
         })}
       </div>
 
-      {/* Selected Step Expanded Inspector Card (Desktop & Tablet) */}
+      {/* Selected Inspector Card (Desktop) */}
       <motion.div
         key={selectedStep}
         initial={{ opacity: 0, y: 10 }}
@@ -126,7 +114,7 @@ export const ProcessTimeline: React.FC = () => {
               <span className="px-2.5 py-0.5 rounded text-xs font-mono bg-[#0066FF]/10 text-[#0066FF] border border-[#0066FF]/20">
                 PHASE {steps[selectedStep].number}
               </span>
-              <span className="text-xs font-mono text-[#A7AFBE]">METHODOLOGY SPEC</span>
+              <span className="text-xs font-mono text-[#A7AFBE]">PROCESS SPEC</span>
             </div>
             <h3 className="text-2xl font-bold text-white">{steps[selectedStep].title}</h3>
             <p className="text-base text-[#A7AFBE] mt-1">{steps[selectedStep].description}</p>
@@ -147,7 +135,7 @@ export const ProcessTimeline: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Mobile Vertical Progression Timeline */}
+      {/* Mobile Stacked Process Cards */}
       <div className="lg:hidden space-y-4">
         {steps.map((step, idx) => {
           const StepIcon = step.icon;
@@ -158,7 +146,7 @@ export const ProcessTimeline: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className="p-6 rounded-2xl bg-[#0D111F] border border-white/[0.08] relative"
+              className="p-6 rounded-2xl bg-[#0D111F] border border-white/[0.08]"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
